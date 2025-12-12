@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@theme {
+    --color-text-color: #1A1A1A;
+    --color-dark: #090D1F;
+    --color-my-primary: #7F56D9;
+    --font-inter: "Inter", sans-serif;
+}
