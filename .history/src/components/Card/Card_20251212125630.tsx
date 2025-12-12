@@ -17,7 +17,7 @@ const Card = ({className,id,image,author,title,description,category1,category2,c
                 <div className="my-3 flex justify-between items-center gap-4">
                     <h3 className="text-text-color font-semibold text-2xl 
                 dark:text-white">{title}</h3>
-                <Link to={`/projects/${id}`}><img src={dark?"/assets/arrowblogwhite.svg":"/assets/arrowblog.svg"} alt="arrow photo" /></Link>
+                <Link to={`//${id}`}><img src={dark?"/assets/arrowblogwhite.svg":"/assets/arrowblog.svg"} alt="arrow photo" /></Link>
                 </div>
                 <p className="text-[#667085] mb-6 leading-6
                 dark:text-[#C0C5D0]">{description}</p>

@@ -9,7 +9,7 @@ const Root = () => {
     const { dark } = useContext(DarkContext)
     const navItems:Array<LinkProp>=[
         {
-            url:"/",
+            url:"/blog",
             text:"Blog"
         },
         {
