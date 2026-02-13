@@ -14,7 +14,7 @@ const SectionBlogDetails = ({id}:SectionBlogDetailsProp) => {
     return (
             <section className="pt-[92px] md:pt-[103px] lg:pt-[150px] mb-[72px] md:mb-8 flex flex-col-reverse md:flex-row
             justify-between gap-4">
-                <div className="min-w-[300px] md:w-[342px]">
+                <div className=" md:w-[342]">
                     <TitleSection title="Recent blog posts" />
                     <ContainerGrid className="details">
                         {
