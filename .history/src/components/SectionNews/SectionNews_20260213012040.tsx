@@ -5,7 +5,7 @@ import ContainerGrid from "../ContainerGrid/ContainerGrid"
 import Card from "../Card/Card"
 
 const SectionNews = () => {
-    const blogs = useSelector((state: { blogs: BlogsState }) => state.blogs.blogs);
+        const blogs = useSelector((state: { blogs: BlogsState }) => state.blogs.blogs);
     const blogNews = blogs.slice(0, 3);
     return (
         <section className="my-[50px] md:my-[72px] lg:mt-[60px] lg:mb-[30px]">

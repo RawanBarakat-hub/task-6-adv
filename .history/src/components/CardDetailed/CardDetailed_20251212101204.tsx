@@ -1,7 +1,7 @@
 import type { BlogDetailBlock, CardDetailedProps } from "../../interfaces"
 
 const CardDetailed = ({author,title,image,details,category1,category2,category3}:CardDetailedProps) => {
-    const detailsCard=(block: BlogDetailBlock)=>{
+    const detailsCard=(block: BlogDetailBlock, index: number)=>{
         switch(block.type){
             case "paragraph":
                 return (
@@ -53,7 +53,7 @@ const CardDetailed = ({author,title,image,details,category1,category2,category3}
             <div>
                 <img className="w-full" src={image.source} alt={image.alternative} />
             </div>
-            {details?.map((block) => detailsCard(block))}
+            {details?.map((block, index) => detailsCard(block, index))}
             <div className="flex gap-2 mt-6">
                     <span className="bg-[#F0F9FF] text-[#026AA2] py-0.5 px-2.5 rounded-2xl">{category1}</span>
                     <span className="bg-[#FDF2FA] text-[#C11574] py-0.5 px-2.5 rounded-2xl">{category2}</span>

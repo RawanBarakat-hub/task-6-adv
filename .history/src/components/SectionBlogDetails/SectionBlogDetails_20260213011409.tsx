@@ -6,7 +6,7 @@ import Card from "../Card/Card"
 import CardDetailed from "../CardDetailed/CardDetailed"
 
 const SectionBlogDetails = ({id}:SectionBlogDetailsProp) => {
-    const blogs = useSelector((state: { blogs: BlogsState }) => state.blogs.blogs);
+    const blogs=useSelector((state:BlogsState)=>state.blogs.blogs)
     const recentBlogs = blogs.slice(-9)
     const blogDetaild=blogs.find((blog)=>{
         return blog.id==id
@@ -36,7 +36,7 @@ const SectionBlogDetails = ({id}:SectionBlogDetailsProp) => {
                     <CardDetailed author={blogDetaild.author}
                     title={blogDetaild.title}
                     image={blogDetaild.image}
-                    details={blogDetaild.details ?? []}
+                    details={blogDetaild.details}
                     category1={blogDetaild.category1}
                     category2={blogDetaild.category2}
                     category3={blogDetaild.category3} />

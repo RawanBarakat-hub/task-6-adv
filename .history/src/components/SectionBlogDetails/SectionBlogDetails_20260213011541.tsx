@@ -36,7 +36,7 @@ const SectionBlogDetails = ({id}:SectionBlogDetailsProp) => {
                     <CardDetailed author={blogDetaild.author}
                     title={blogDetaild.title}
                     image={blogDetaild.image}
-                    details={blogDetaild.details ?? []}
+                    details={blogDetaild.details}
                     category1={blogDetaild.category1}
                     category2={blogDetaild.category2}
                     category3={blogDetaild.category3} />

@@ -53,8 +53,8 @@ const CardDetailed = ({author,title,image,details,category1,category2,category3}
             <div>
                 <img className="w-full" src={image.source} alt={image.alternative} />
             </div>
-            {details?.map((block) => detailsCard(block))}
-            <div className="flex gap-2 mt-6">
+            {details?.map((block, index) => detailsCard(block, index))}
+            <div key={index} className="flex gap-2 mt-6">
                     <span className="bg-[#F0F9FF] text-[#026AA2] py-0.5 px-2.5 rounded-2xl">{category1}</span>
                     <span className="bg-[#FDF2FA] text-[#C11574] py-0.5 px-2.5 rounded-2xl">{category2}</span>
                     {

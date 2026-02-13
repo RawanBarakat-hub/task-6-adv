@@ -5,14 +5,14 @@ import ContainerGrid from "../ContainerGrid/ContainerGrid"
 import Card from "../Card/Card"
 
 const SectionHomeRecentBlogs = () => {
-    const blogs = useSelector((state: { blogs: BlogsState }) => state.blogs.blogs);
+    const blogs=useSelector((state:BlogsState)=>state.blogs.blogs)
     const homeBlogs = blogs.slice(-4)
     return (
         <section className="mt-[50px] md:mt-[60px] mb-[30px]">
             <TitleSection title="Recent blog posts" />
             <ContainerGrid className="recent">
                 {
-                homeBlogs?.map((homeBlog,index:number)=>{
+                homeBlogs?.map((homeBlog,index.)=>{
                     const flexClass = (index === 1 || index === 2) ? "md:flex md:gap-6" : ""
                     let gridClass = ""
                     if (index === 0) gridClass = "lg:row-span-2"

@@ -5,8 +5,7 @@ import { setPage } from "../../redux/slice";
 
 const Pagination = () => {
     const dispatch = useDispatch();
-    const { blogs, currentPage } = useSelector(
-        (state: { blogs: BlogsState }) => state.blogs);
+    const { blogs, currentPage } = useSelector((state: BlogsState) => state.blogs);
     const cardsPerPage = 6;
     const totalPages = Math.ceil(blogs.length / cardsPerPage)
     const goToPage = (page: number) => {

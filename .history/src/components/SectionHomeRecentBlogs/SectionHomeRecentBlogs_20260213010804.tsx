@@ -2,7 +2,6 @@ import { useSelector } from "react-redux"
 import TitleSection from "../TitleSection/TitleSection"
 import type { BlogsState } from "../../interfaces"
 import ContainerGrid from "../ContainerGrid/ContainerGrid"
-import CardDetailed from "../CardDetailed/CardDetailed"
 import Card from "../Card/Card"
 
 const SectionHomeRecentBlogs = () => {
@@ -13,7 +12,7 @@ const SectionHomeRecentBlogs = () => {
             <TitleSection title="Recent blog posts" />
             <ContainerGrid className="recent">
                 {
-                homeBlogs?.map((homeBlog,index)=>{
+                homeBlogs?.map((homeBlog:b,index:number)=>{
                     const flexClass = (index === 1 || index === 2) ? "md:flex md:gap-6" : ""
                     let gridClass = ""
                     if (index === 0) gridClass = "lg:row-span-2"

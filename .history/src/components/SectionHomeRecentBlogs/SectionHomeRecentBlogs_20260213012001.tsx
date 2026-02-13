@@ -6,6 +6,7 @@ import Card from "../Card/Card"
 
 const SectionHomeRecentBlogs = () => {
     const blogs = useSelector((state: { blogs: BlogsState }) => state.blogs.blogs);
+
     const homeBlogs = blogs.slice(-4)
     return (
         <section className="mt-[50px] md:mt-[60px] mb-[30px]">

@@ -5,7 +5,7 @@ import ContainerGrid from "../ContainerGrid/ContainerGrid"
 import Card from "../Card/Card"
 
 const SectionHomeAllBlogs = () => {
-    const { blogs, currentPage } = useSelector((state: { blogs: BlogsState }) => state.blogs);
+    const { blogs, currentPage } = useSelector((state: BlogsState) => state.blogs);
     const cardsPerPage = 6;
     const start = (currentPage - 1) * cardsPerPage;
     const end = start + cardsPerPage
