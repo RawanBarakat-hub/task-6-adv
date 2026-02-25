@@ -34,7 +34,7 @@ const Card = ({className,id,image,author,title,description,category1,category2,c
 
                 <Link to={`/projects/${id}`}>
                     <img src={dark?"/assets/arrowblogwhite.svg":"/assets/arrowblog.svg"} alt="arrow photo" />
-                </Link>
+                    </Link>
 
                 </div>
                 <p className="text-[#667085] mb-6 leading-6

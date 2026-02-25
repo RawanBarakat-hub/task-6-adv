@@ -32,9 +32,9 @@ const Card = ({className,id,image,author,title,description,category1,category2,c
                     <h3 className="text-text-color font-semibold text-2xl 
                 dark:text-white">{title}</h3>
 
-                <Link to={`/projects/${id}`}>
-                    <img src={dark?"/assets/arrowblogwhite.svg":"/assets/arrowblog.svg"} alt="arrow photo" />
-                </Link>
+                <motion.div whileHover={{ x: 5 }}>
+                    
+                </motion.div>
 
                 </div>
                 <p className="text-[#667085] mb-6 leading-6

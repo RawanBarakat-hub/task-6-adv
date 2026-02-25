@@ -33,8 +33,8 @@ const Card = ({className,id,image,author,title,description,category1,category2,c
                 dark:text-white">{title}</h3>
 
                 <Link to={`/projects/${id}`}>
-                    <img src={dark?"/assets/arrowblogwhite.svg":"/assets/arrowblog.svg"} alt="arrow photo" />
-                </Link>
+                        <img src={dark?"/assets/arrowblogwhite.svg":"/assets/arrowblog.svg"} alt="arrow photo" />
+                    </Link>
 
                 </div>
                 <p className="text-[#667085] mb-6 leading-6
