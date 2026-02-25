@@ -17,8 +17,8 @@ const Root = () => {
 
     useEffect(() => {
     let pageLoadTimer: ReturnType<typeof setTimeout>;
-    let extraDelay: ReturnType<typeof setTimeout>;
-    let animationDelay: ReturnType<typeof setTimeout>;
+let extraDelay: ReturnType<typeof setTimeout>;
+let animationDelay: ReturnType<typeof setTimeout>;
 
     requestAnimationFrame(() => {
         setShowLoader(true);

@@ -16,9 +16,9 @@ const Root = () => {
     const [canAnimate, setCanAnimate] = useState(false);
 
     useEffect(() => {
-    let pageLoadTimer: ReturnType<typeof setTimeout>;
-    let extraDelay: ReturnType<typeof setTimeout>;
-    let animationDelay: ReturnType<typeof setTimeout>;
+    let pageLoadTimer: NodeJS.Timeout;
+    let extraDelay: NodeJS.Timeout;
+    let animationDelay: NodeJS.Timeout;
 
     requestAnimationFrame(() => {
         setShowLoader(true);

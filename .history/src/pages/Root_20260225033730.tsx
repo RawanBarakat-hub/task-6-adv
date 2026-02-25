@@ -1,6 +1,6 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigation } from "react-router-dom";
 import NavBar from "../components/NavBar/NavBar";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { DarkContext } from "../context/DarkContext";
 import Footer from "../components/Footer/Footer";
 import ScrollToTop from "../components/ScollToTop";
@@ -11,42 +11,32 @@ import Loader from "../components/Loader";
 const Root = () => {
     const { dark } = useContext(DarkContext);
     const location = useLocation();
+    const navigation = useNavigation();
 
-    const [showLoader, setShowLoader] = useState(true);
-    const [canAnimate, setCanAnimate] = useState(false);
+    const [showLoader, setShowLoader] = useState(false);
+    const startTimeRef = useRef<number | null>(null);
+
+    const isLoading = navigation.state === "loading";
 
     useEffect(() => {
-    let pageLoadTimer: ReturnType<typeof setTimeout>;
-    let extraDelay: ReturnType<typeof setTimeout>;
-    let animationDelay: ReturnType<typeof setTimeout>;
+        if (isLoading) {
+            startTimeRef.current = Date.now();
+            setShowLoader(true);
+        } else if (startTimeRef.current) {
+            const elapsed = Date.now() - startTimeRef.current;
+            const remaining = 500 - elapsed; // نصف ثانية
 
-    requestAnimationFrame(() => {
-        setShowLoader(true);
-        setCanAnimate(false);
-
-        // نحاكي انتهاء تحميل الصفحة
-        pageLoadTimer = setTimeout(() => {
-
-            // ثانية إضافية بعد انتهاء التحميل
-            extraDelay = setTimeout(() => {
+            if (remaining > 0) {
+                setTimeout(() => {
+                    setShowLoader(false);
+                    startTimeRef.current = null;
+                }, remaining);
+            } else {
                 setShowLoader(false);
-
-                // بعد اختفاء اللودر نبدأ الأنيميشن
-                animationDelay = setTimeout(() => {
-                    setCanAnimate(true);
-                }, 200);
-
-            }, 1000);
-
-        }, 0);
-    });
-
-    return () => {
-        clearTimeout(pageLoadTimer);
-        clearTimeout(extraDelay);
-        clearTimeout(animationDelay);
-    };
-}, [location.pathname]);
+                startTimeRef.current = null;
+            }
+        }
+    }, [isLoading]);
 
     return (
         <div
@@ -58,14 +48,14 @@ const Root = () => {
             `}
         >
 
-            {/* Loader */}
+            {/* 🔥 Loader لمدة لا تقل عن 0.5 ثانية */}
             <AnimatePresence>
                 {showLoader && (
                     <motion.div
-                        initial={{ opacity: 1 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="fixed inset-0 z-50"
+                        transition={{ duration: 0.3 }}
                     >
                         <Loader />
                     </motion.div>
@@ -89,16 +79,11 @@ const Root = () => {
                 }}
             />
 
-            {/* Page Transition */}
             <AnimatePresence mode="wait">
                 <motion.div
                     key={location.pathname}
                     initial={{ opacity: 0, y: 20 }}
-                    animate={
-                        canAnimate
-                            ? { opacity: 1, y: 0 }
-                            : { opacity: 0, y: 20 }
-                    }
+                    animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.4, ease: "easeInOut" }}
                 >

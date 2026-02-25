@@ -12,42 +12,27 @@ const Root = () => {
     const { dark } = useContext(DarkContext);
     const location = useLocation();
 
-    const [showLoader, setShowLoader] = useState(true);
-    const [canAnimate, setCanAnimate] = useState(false);
-
+    const [showLoader, setShowLoader] = useState(false);
+const [canAnimate, setCanAnimate] = useState(false);
+    // 🔥 يظهر اللودر عند تغيير الصفحة لمدة 0.5 ثانية
     useEffect(() => {
-    let pageLoadTimer: ReturnType<typeof setTimeout>;
-    let extraDelay: ReturnType<typeof setTimeout>;
-    let animationDelay: ReturnType<typeof setTimeout>;
+    let timer: NodeJS.Timeout;
 
-    requestAnimationFrame(() => {
-        setShowLoader(true);
-        setCanAnimate(false);
+    setShowLoader(true);
+    setCanAnimate(false);
 
-        // نحاكي انتهاء تحميل الصفحة
-        pageLoadTimer = setTimeout(() => {
+    timer = setTimeout(() => {
+        setShowLoader(false);
 
-            // ثانية إضافية بعد انتهاء التحميل
-            extraDelay = setTimeout(() => {
-                setShowLoader(false);
+        // ننتظر اختفاء loader fade (0.2s) ثم نبدأ animation
+        setTimeout(() => {
+            setCanAnimate(true);
+        }, 200);
 
-                // بعد اختفاء اللودر نبدأ الأنيميشن
-                animationDelay = setTimeout(() => {
-                    setCanAnimate(true);
-                }, 200);
+    }, 1200);
 
-            }, 1000);
-
-        }, 0);
-    });
-
-    return () => {
-        clearTimeout(pageLoadTimer);
-        clearTimeout(extraDelay);
-        clearTimeout(animationDelay);
-    };
+    return () => clearTimeout(timer);
 }, [location.pathname]);
-
     return (
         <div
             className={`
@@ -58,18 +43,19 @@ const Root = () => {
             `}
         >
 
-            {/* Loader */}
+            {/* 🔥 Loader */}
             <AnimatePresence>
                 {showLoader && (
                     <motion.div
-                        initial={{ opacity: 1 }}
+                        initial={{ opacity: 0, y: 20 }}
+animate={canAnimate ? { opacity: 1, y: 0 } : false}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.2 }}
+                        transition={{ duration: 0.4, ease: "easeInOut", delay: 0.9 }}
                         className="fixed inset-0 z-50"
                     >
                         <Loader />
                     </motion.div>
-                )}
+                    )}
             </AnimatePresence>
 
             <NavBar
@@ -94,11 +80,7 @@ const Root = () => {
                 <motion.div
                     key={location.pathname}
                     initial={{ opacity: 0, y: 20 }}
-                    animate={
-                        canAnimate
-                            ? { opacity: 1, y: 0 }
-                            : { opacity: 0, y: 20 }
-                    }
+                    animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.4, ease: "easeInOut" }}
                 >

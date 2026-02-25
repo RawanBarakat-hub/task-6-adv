@@ -8,8 +8,8 @@ const Footer = ({info,items}:FooterProps) => {
             <ul className="flex justify-center items-center flex-col md:flex-row gap-3.5">
                 {
                     items.map((item)=>{
-                        return <li><a className="text-[20px] text-text-color hover:text-[#6941C6]
-                        dark:text-white transition-all" href={item.url}>{item.text}</a></li>
+                        return <li><a className="text-[20px] text-text-color hover:text-[]
+                        dark:text-white" href={item.url}>{item.text}</a></li>
                     })
                 }
             </ul>

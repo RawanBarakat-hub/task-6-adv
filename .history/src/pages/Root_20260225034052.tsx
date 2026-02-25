@@ -16,37 +16,28 @@ const Root = () => {
     const [canAnimate, setCanAnimate] = useState(false);
 
     useEffect(() => {
-    let pageLoadTimer: ReturnType<typeof setTimeout>;
-    let extraDelay: ReturnType<typeof setTimeout>;
-    let animationDelay: ReturnType<typeof setTimeout>;
-
-    requestAnimationFrame(() => {
         setShowLoader(true);
         setCanAnimate(false);
 
         // نحاكي انتهاء تحميل الصفحة
-        pageLoadTimer = setTimeout(() => {
-
-            // ثانية إضافية بعد انتهاء التحميل
-            extraDelay = setTimeout(() => {
+        const pageLoadTimer = setTimeout(() => {
+            // بعد انتهاء التحميل ننتظر ثانية إضافية
+            const extraDelay = setTimeout(() => {
                 setShowLoader(false);
 
                 // بعد اختفاء اللودر نبدأ الأنيميشن
-                animationDelay = setTimeout(() => {
+                setTimeout(() => {
                     setCanAnimate(true);
-                }, 200);
+                }, 200); // مدة fade الخاصة باللودر
 
-            }, 1000);
+            }, 1000); // ثانية إضافية
 
-        }, 0);
-    });
+            return () => clearTimeout(extraDelay);
 
-    return () => {
-        clearTimeout(pageLoadTimer);
-        clearTimeout(extraDelay);
-        clearTimeout(animationDelay);
-    };
-}, [location.pathname]);
+        }, 0); // يمكن ربطها بتحميل حقيقي إذا أردت
+
+        return () => clearTimeout(pageLoadTimer);
+    }, [location.pathname]);
 
     return (
         <div
